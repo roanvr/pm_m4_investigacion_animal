@@ -1,11 +1,11 @@
-const Animal = require ('./Animal');
+import Animal from './Animal.js';
 
 class Leon extends Animal {
     constructor (nombre, edad, img, comentarios, sonido) {
         super (nombre, edad, img, comentarios, sonido);
     };
     rugir () {
-        this.audioAnimal();
+        return this.audioAnimal();
     };
 };
 
@@ -14,7 +14,7 @@ class Lobo extends Animal {
         super (nombre, edad, img, comentarios, sonido);
     };
     aullar () {
-        this.audioAnimal();
+        return this.audioAnimal();
     };
 };
 
@@ -23,7 +23,7 @@ class Oso extends Animal {
         super (nombre, edad, img, comentarios, sonido);
     };
     gruñir () {
-        this.audioAnimal();
+        return this.audioAnimal();
     };
 };
 
@@ -32,7 +32,7 @@ class Serpiente extends Animal {
         super (nombre, edad, img, comentarios, sonido);
     };
     sisear () {
-        this.audioAnimal();
+        return this.audioAnimal();
     };
 };
 
@@ -41,8 +41,8 @@ class Aguila extends Animal {
         super (nombre, edad, img, comentarios, sonido);
     };
     chillar () {
-        this.audioAnimal();
+        return this.audioAnimal();
     };
 };
 
-export {Leon, Lobo, Oso, Serpiente, Aguila}
+export { Leon, Lobo, Oso, Serpiente, Aguila };

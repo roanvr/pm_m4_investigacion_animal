@@ -1,4 +1,5 @@
-import {Leon, Lobo, Oso, Serpiente, Aguilar} from './derivatives';
+import { Leon, Lobo, Oso, Serpiente, Aguila } from './derivatives.js';
+import Animal from './Animal.js';
 
 async function obtenerAnimal(tipo) {
     const datosAnimales = {
@@ -26,7 +27,30 @@ async function obtenerAnimal(tipo) {
     return datosAnimales[tipo];
 };
 
-document.getElementById('btnRegistrar').addEventListener('click', async () => {
+function agregarAnimal(animal) {
+    const contenedorAnimal = document.getElementById('Animales');
+    const divAnimal = document.createElement('div');
+    divAnimal.classList.add('animal-card');
+
+    divAnimal.innerHTML = `
+    <img src="${Animal.img}" alt="${Animal.nombre}" class="animal-img">
+    <div class="animal-info">
+        <h4>${animal.nombre}</h4>
+        <p>Edad: ${animal.edad}</p>
+        <p>Comentarios: ${animal._comentarios}</p>
+        <button class="btn btn-primary btn sm" onclick="reproducirSonido('${animal.sonido}')">Escuchar sonido</button>
+    </div>`;
+    contenedorAnimal.appendChild(divAnimal);
+};
+
+function reproducirSonido(sonido) {
+    const player = document.getElementById('player');
+    player.src = sonido;
+    player.play();
+}
+
+
+/* document.getElementById('btnRegistrar').addEventListener('click', async () => {
     const tipoAnimal = document.getElementById('animal').value;
     const edad = document.getElementById('edad').value;  
     const comentarios = document.getElementById('comentarios').value; 
@@ -49,6 +73,41 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
             break;
         case 'Aguila': 
             nuevoAnimal = new Aguila('Aguila', edad, './img/Aguila.png', comentarios, './sounds/Chillido.mp3');
+            break;
+        default:
+            alert('Seleccione el animal');
+            return;
+    }
+
+    obtenerAnimal(nuevoAnimal);
+    return;
+},
+agregarAnimal(nuevoAnimal)
+); */
+
+document.getElementById('btnRegistrar').addEventListener('click', async () => {
+    const tipoAnimal = document.getElementById('animal').value;
+    const edad = document.getElementById('edad').value;
+    const comentarios = document.getElementById('comentarios').value;
+
+    let nuevoAnimal;
+    const datosAnimal = await obtenerAnimal(tipoAnimal);
+
+    switch (tipoAnimal) {
+        case 'Leon':
+            nuevoAnimal = new Leon('Leon', edad, datosAnimal.img, comentarios, datosAnimal.sonido);
+            break;
+        case 'Lobo':
+            nuevoAnimal = new Lobo('Lobo', edad, './img/Lobo', comentarios, datosAnimal.sonido);
+            break;
+        case 'Oso':
+            nuevoAnimal = new Oso('Oso', edad, datosAnimal.img, comentarios, datosAnimal.sonido);
+            break;
+        case 'Serpiente':
+            nuevoAnimal = new Serpiente('Serpiente', edad, datosAnimal.img, comentarios, datosAnimal.sonido);
+            break;
+        case 'Aguila':
+            nuevoAnimal = new Aguila('Aguila', edad, datosAnimal.img, comentarios, datosAnimal.sonido);
             break;
         default:
             alert('Seleccione el animal');

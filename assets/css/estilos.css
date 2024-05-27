@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url("../imgs/fondo.jpg");
+  background-image: url("../img/fondo.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,7 +16,7 @@ body {
 
 #preview {
   height: 200px;
-  background-image: url(../imgs/lion.svg);
+  background-image: url(../img/lion.svg);
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
